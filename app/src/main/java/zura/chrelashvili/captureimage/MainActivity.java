@@ -15,16 +15,17 @@ import android.widget.ImageView;
 public class MainActivity extends ActionBarActivity {
 
     int REQUEST_CODE=1;
-    ImageView IMG;
+     ImageView imageView;
     Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        this.imageView= (ImageView) findViewById(R.id.image);
         Button btn= (Button) findViewById(R.id.BTN);
-        ImageView IMG= (ImageView) findViewById(R.id.image);
+        
 
          btn.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -64,9 +65,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            IMG.setImageBitmap(imageBitmap);
+            
+             Bitmap photo=(Bitmap) data.getExtras().get("data");
+              imageView.setImageBitmap(photo);
         }
     }
 
